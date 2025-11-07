@@ -89,7 +89,15 @@ class AudioInputRouteModule : Module() {
       "portName" to "AudioManager not available"
     )
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+      Log.w(TAG, "API level ${Build.VERSION.SDK_INT} is not supported. Requires API 23+")
+      return mapOf(
+        "portType" to "Unknown",
+        "portName" to "API 23+ required"
+      )
+    }
+
+    try {
       // Get all input devices
       val devices = manager.getDevices(AudioManager.GET_DEVICES_INPUTS)
       
@@ -117,13 +125,19 @@ class AudioInputRouteModule : Module() {
           "portName" to portName
         )
       }
-    }
 
-    Log.d(TAG, "No input devices found")
-    return mapOf(
-      "portType" to "Unknown",
-      "portName" to "No Input"
-    )
+      Log.d(TAG, "No input devices found")
+      return mapOf(
+        "portType" to "Unknown",
+        "portName" to "No Input"
+      )
+    } catch (e: Exception) {
+      Log.e(TAG, "Error getting audio input route: ${e.message}", e)
+      return mapOf(
+        "portType" to "Unknown",
+        "portName" to "Error: ${e.message}"
+      )
+    }
   }
 
   private fun getPriority(type: Int): Int {
