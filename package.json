@@ -1,0 +1,31 @@
+{
+  "name": "audio-input-route",
+  "version": "1.0.1",
+  "description": "Expo module for detecting audio input routes on iOS",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+    "expo",
+    "expo-module",
+    "audio",
+    "ios",
+    "microphone",
+    "audio-route",
+    "bluetooth",
+    "react-native"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moritouch/audio-input-route.git"
+  },
+  "bugs": {
+    "url": "https://github.com/moritouch/audio-input-route/issues"
+  },
+  "homepage": "https://github.com/moritouch/audio-input-route#readme",
+  "author": "moritouch",
+  "license": "MIT",
+  "peerDependencies": {
+    "expo": "*",
+    "expo-modules-core": "*"
+  }
+}
